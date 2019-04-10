@@ -18,3 +18,6 @@ public
 
 # elm tests directory
 tests
+
+# service worker removed from git indexing
+registerServiceWorker.js
