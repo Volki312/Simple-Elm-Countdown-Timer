@@ -26,9 +26,9 @@ type alias Model =
     { time : Int }
 
 
-init : () -> ( Model, Cmd Msg )
-init _ =
-    ( { time = 1609455600000 }, Cmd.none )
+init : Int -> ( Model, Cmd Msg )
+init currentDate =
+    ( { time = currentDate }, Cmd.none )
 
 
 
@@ -68,9 +68,13 @@ subscriptions model =
 view : Model -> Html Msg
 view model =
     let
-        timeDiff =
         -- 1609455600001 to posix time is 1/1/2021 00:00:00
-            1609455600001 - model.time
+        -- TODO: Time.posixToMillis ( 2021 January 1 at 00:00:00 UTC)
+        countdownDate =
+            1609455600001
+
+        timeDiff =
+            countdownDate - model.time
 
         day =
             String.fromInt (round (toFloat timeDiff / toFloat (1000 * 60 * 60 * 24)))
